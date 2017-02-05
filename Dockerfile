@@ -6,5 +6,3 @@ USER root
 RUN set -x \
     && apk upgrade --update \
     && apk add --no-cache docker
-
-USER $USER
