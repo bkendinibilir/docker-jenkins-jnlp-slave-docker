@@ -1,5 +1,5 @@
 FROM eu.gcr.io/techstories-155021/jenkins-slave-jnlp
-MAINTAINER Benjamin Kendinibilir <bkendinibilir@mac.com>
+LABEL maintainer "Benjamin Kendinibilir <bkendinibilir@mac.com>"
 
 USER root
 
