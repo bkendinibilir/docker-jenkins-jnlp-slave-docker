@@ -1,21 +1,18 @@
-pipeline {
-    agent label 'docker'
+properties([
+    pipelineTriggers([
+        cron('H H(3-6) * * *'), 
+        pollSCM('* * * * *')
+    ])
+])
 
-    environment {
-        REGISTRY = 'docker.io/bkendinibilir'
-    }
-
-    stages {
+node('docker') {
+    withEnv(['REGISTRY = \'docker.io/bkendinibilir\'']) {
         stage('Build') {
-            steps {
-                checkout scm
-                sh 'make build'
-            }
+            checkout scm
+            sh 'make build'
         }
         stage('Push') {
-            steps {
-                sh 'make push'
-            }
+            sh 'make push'
         }
     }
 }
