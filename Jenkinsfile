@@ -1,19 +1,21 @@
-agent label 'docker'
+pipeline {
+    agent label 'docker'
 
-environment {
-    REGISTRY = 'docker.io/bkendinibilir'
-}
-
-stages {
-    stage('Build') {
-        steps {
-            checkout scm
-            sh 'make build'
-        }
+    environment {
+        REGISTRY = 'docker.io/bkendinibilir'
     }
-    stage('Push') {
-        steps {
-            sh 'make push'
+
+    stages {
+        stage('Build') {
+            steps {
+                checkout scm
+                sh 'make build'
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'make push'
+            }
         }
     }
 }
