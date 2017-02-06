@@ -6,13 +6,11 @@ properties([
 ])
 
 node('docker') {
-    withEnv(['REGISTRY = \'docker.io/bkendinibilir\'']) {
         stage('Build') {
             checkout scm
-            sh 'make build'
+            sh 'REGISTRY=docker.io/bkendinibilir make build'
         }
         stage('Push') {
-            sh 'make push'
+            sh 'REGISTRY=docker.io/bkendinibilir make push'
         }
-    }
 }
